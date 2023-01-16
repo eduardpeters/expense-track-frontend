@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.css';
+import Access from './Access';
+import "../styles/App.css";
 
 function App() {
   return (
     <div className="App">
-      Hello React + Typescript!
+      <h1>Expense Tacking App</h1>
+      <Access />
     </div>
   );
 }
