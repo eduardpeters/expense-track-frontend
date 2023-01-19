@@ -3,6 +3,7 @@ import Login from "./Login";
 import Register from "./Register";
 import UserHome from "./UserHome";
 import authorizationAPI from "../services/authorizationAPI";
+import "../styles/Access.css";
 
 function Access() {
     const [toggleRegister, setToggleRegister] = useState(false);
@@ -32,9 +33,11 @@ function Access() {
             {isLoggedIn ?
                 <UserHome username={username} />
                 :
-                <div>
-                    <button onClick={() => setToggleRegister(false)}>Log In</button>
-                    <button onClick={() => setToggleRegister(true)}>Register</button>
+                <div className="access-container">
+                    <div className="buttons-container">
+                        <button className="access__button" onClick={() => setToggleRegister(false)}>Log In</button>
+                        <button className="access__button" onClick={() => setToggleRegister(true)}>Register</button>
+                    </div>
                     {toggleRegister ?
                         <Register />
                         :

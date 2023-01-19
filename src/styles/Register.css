@@ -1,0 +1,34 @@
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    border: 1px solid #d3d3d3;
+}
+
+.register__title {
+    font-size: 1.25rem;
+}
+
+.register-inputs {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    height: 7vh;
+}
+
+.register__button {
+    margin: 1rem;
+    padding: 5px;
+    min-width: 10vw;
+    border: none;
+    background-color: #d3d3d389;
+}
+
+.register__button:hover {
+    transform: scale(1.2);
+    background-color: #54be549a;
+}

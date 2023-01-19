@@ -12,7 +12,7 @@ function UserHome({username}: UserHomeProps) {
 
     return (
         <div>
-            {`Welcome ${username}!`}
+            {`Welcome back ${username}!`}
             <button onClick={handleLogOut}>Log Out</button>
         </div>
     );

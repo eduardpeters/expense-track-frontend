@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AxiosResponse } from "axios";
 import authorizationAPI from "../services/authorizationAPI";
+import "../styles/Login.css";
 
 function Login() {
     const [username, setUsername] = useState("");
@@ -10,7 +11,7 @@ function Login() {
         if (username && password) {
             const response = await authorizationAPI.login(username, password);
             console.log(response);
-            if (response){
+            if (response) {
                 if ((response as AxiosResponse).status === 200) {
                     const token = (response as AxiosResponse).data.token.split(' ')[1];
                     console.log(token);
@@ -27,11 +28,17 @@ function Login() {
     }
 
     return (
-        <div>
-            <h3>Login Form</h3>
-            <input type="text" value={username} onChange={event => setUsername(event.target.value)}></input>
-            <input type="password" value={password} onChange={event => setPassword(event.target.value)}></input>
-            <button onClick={handleLoginClick}>Log In</button>
+        <div className="login-container">
+            <h3 className="login__title">Please Log In</h3>
+            <div className="login-inputs">
+                <label htmlFor="usernameInput">Username</label>
+                <input type="text" id="usernameInput" value={username} onChange={event => setUsername(event.target.value)}></input>
+            </div>
+            <div className="login-inputs">
+                <label htmlFor="passwordInput">Password</label>
+                <input type="password" id="passwordInput" value={password} onChange={event => setPassword(event.target.value)}></input>
+            </div>
+            <button className="login__button" onClick={handleLoginClick}>Log In</button>
         </div>
     );
 }
