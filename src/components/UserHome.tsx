@@ -1,13 +1,31 @@
-interface UserHomeProps {
-    username: string;
-}
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import authorizationAPI from "../services/authorizationAPI";
 
-function UserHome({username}: UserHomeProps) {
+function UserHome() {
+    const [username, setUsername] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        async function checkToken(token: string) {
+            const response = await authorizationAPI.isAuthorized(token);
+            if (response.isLoggedIn && response.username) {
+                setUsername(response.username);
+            }
+            else {
+                console.log(response.message);
+                navigate("/");
+            }
+        }
+        const storedToken = localStorage.getItem("expenseTrackToken");
+        if (storedToken) {
+            checkToken(storedToken);
+        }
+    }, [navigate]);
 
     function handleLogOut() {
         localStorage.removeItem("expenseTrackToken");
-        console.log("You are now logged out");
-        // should navigate to main page now
+        navigate("/");
     }
 
     return (

@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { AxiosResponse } from "axios";
+import { useNavigate } from "react-router-dom";
 import authorizationAPI from "../services/authorizationAPI";
 import "../styles/Login.css";
 
 function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     async function handleLoginClick() {
         if (username && password) {
             const response = await authorizationAPI.login(username, password);
-            console.log(response);
             if (response) {
                 if ((response as AxiosResponse).status === 200) {
                     const token = (response as AxiosResponse).data.token.split(' ')[1];
-                    console.log(token);
                     localStorage.setItem("expenseTrackToken", token);
+                    navigate("/home");
                 }
                 else {
                     console.log((response as AxiosResponse).data.message);

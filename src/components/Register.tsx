@@ -3,7 +3,11 @@ import authorizationAPI from "../services/authorizationAPI";
 import { AxiosResponse } from "axios";
 import "../styles/Register.css";
 
-function Register() {
+interface RegisterProps {
+    setToggleRegister: (value: boolean) => void;
+}
+
+function Register({setToggleRegister}: RegisterProps) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -15,6 +19,9 @@ function Register() {
             console.log(response);
             if (response) {
                 console.log((response as AxiosResponse).data.message);
+                if ((response as AxiosResponse).status === 200) {
+                    setToggleRegister(false);
+                }
             }
             else {
                 console.log("An error occurred");
