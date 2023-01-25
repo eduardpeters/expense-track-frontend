@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import usersAPI from "../services/usersAPI";
+import BudgetsList from "./BudgetsList";
 
 function UserHome() {
     const [username, setUsername] = useState("");
@@ -31,7 +32,8 @@ function UserHome() {
 
     return (
         <div>
-            {`Welcome back ${username}!`}
+            <h2>{`Welcome back ${username}!`}</h2>
+            <BudgetsList />
             <button onClick={handleLogOut}>Log Out</button>
         </div>
     );
