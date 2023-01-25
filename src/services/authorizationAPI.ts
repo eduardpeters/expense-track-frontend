@@ -1,7 +1,5 @@
 import axios, { AxiosError } from "axios";
 
-type IsAuthorized = Promise<{isLoggedIn: boolean; message?: string; username?: string }>
-
 class authorizationAPI {
 
     static async login(username: string, password: string) {
@@ -21,19 +19,6 @@ class authorizationAPI {
                 console.error(error);
                 return {};
             }
-        }
-    }
-
-    static async isAuthorized(token: string): IsAuthorized {
-        const requestUrl = `${process.env.REACT_APP_BASE_URL}getuser`;
-        const requestConfig = { headers: { authorization: `Bearer ${token}` } };
-        try {
-            const response = await axios.get(requestUrl, requestConfig);
-            return response.data;
-        }
-        catch (error) {
-            console.error(error);
-            return { isLoggedIn: false, message: "Failed to authenticate" };
         }
     }
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import authorizationAPI from "../services/authorizationAPI";
+import usersAPI from "../services/usersAPI";
 
 function UserHome() {
     const [username, setUsername] = useState("");
@@ -8,12 +8,13 @@ function UserHome() {
 
     useEffect(() => {
         async function checkToken(token: string) {
-            const response = await authorizationAPI.isAuthorized(token);
+            const response = await usersAPI.getUser(token);
             if (response.isLoggedIn && response.username) {
                 setUsername(response.username);
             }
             else {
                 console.log(response.message);
+                localStorage.removeItem("expenseTrackToken");
                 navigate("/");
             }
         }
