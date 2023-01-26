@@ -9,7 +9,8 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    async function handleLoginClick() {
+    async function handleLoginSubmit(event: React.FormEvent) {
+        event.preventDefault();
         if (username && password) {
             const response = await authorizationAPI.login(username, password);
             if (response) {
@@ -29,7 +30,7 @@ function Login() {
     }
 
     return (
-        <div className="login-container">
+        <form className="login-container" onSubmit={(event) => handleLoginSubmit(event)}>
             <h3 className="login__title">Please Log In</h3>
             <div className="login-inputs">
                 <label htmlFor="usernameInput">Username</label>
@@ -39,8 +40,8 @@ function Login() {
                 <label htmlFor="passwordInput">Password</label>
                 <input type="password" id="passwordInput" value={password} onChange={event => setPassword(event.target.value)}></input>
             </div>
-            <button className="login__button" onClick={handleLoginClick}>Log In</button>
-        </div>
+            <button type="submit" className="login__button">Log In</button>
+        </form>
     );
 }
 
