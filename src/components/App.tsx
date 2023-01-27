@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Access from "./Access";
 import UserHome from "./UserHome";
 import "../styles/App.css";
+import Budget from "./Budget";
 
 const router = createBrowserRouter([
     {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
     {
         path: "/home",
         element: <UserHome />
+    },
+    {
+        path: "/budget/:budgetId",
+        element: <Budget />
     }
 ]);
 

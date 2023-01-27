@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import budgetsAPI from "../services/budgetsAPI";
 
 interface Budget {
@@ -11,7 +12,7 @@ function BudgetsList() {
 
     useEffect(() => {
         async function getBudgets(token: string) {
-            const budgetsResponse = await budgetsAPI.getAll(token);
+            const budgetsResponse = await budgetsAPI.getBudgets(token);
             setBudgets(budgetsResponse);
         }
         const storedToken = localStorage.getItem("expenseTrackToken");
@@ -20,12 +21,18 @@ function BudgetsList() {
         }
     });
 
-    const budgetTitles = budgets.map((budget: Budget) => <p key={budget._id}>{budget.title}</p>)
+    const budgetLinks = budgets.map((budget: Budget) => {
+        return (
+            <div className="budget-link-container" key={budget._id}>
+                <Link to={`/budget/${budget._id}`} className="budget-link">{budget.title}</Link>
+            </div>
+        );
+    });
 
     return (
         <>
             <div>This is a list of your budgets</div>
-            {budgets.length ? budgetTitles : "You have no budgets yet"}
+            {budgets.length ? budgetLinks : "You have no budgets yet"}
         </>
     );
 }

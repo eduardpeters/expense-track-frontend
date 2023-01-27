@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const baseUrl = `${process.env.REACT_APP_BASE_URL}budgets`;
+const baseUrl = `${process.env.REACT_APP_BASE_URL}entries`;
 
-class budgetsAPI {
+class entriesAPI {
 
-    static async getBudgets(token: string) {
-        const requestUrl = `${baseUrl}`;
+    static async getEntries(token: string, budgetId: string) {
+        const requestUrl = `${baseUrl}/${budgetId}`;
         const requestConfig = { headers: { authorization: `Bearer ${token}` } };
         try {
             const response = await axios.get(requestUrl, requestConfig);
@@ -18,4 +18,4 @@ class budgetsAPI {
     }
 }
 
-export default budgetsAPI;
+export default entriesAPI;
