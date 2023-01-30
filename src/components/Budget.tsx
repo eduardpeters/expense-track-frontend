@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Entry } from "../types/AppTypes";
 import entriesAPI from "../services/entriesAPI";
-
-interface Entry {
-    _id: string;
-    account: string;
-    amount: number;
-    budget: string;
-    category: string;
-    date: string;
-    description: string;
-}
+import TableHeaders from "./TableHeader";
+import TableRows from "./TableRows";
 
 function Budget() {
     const [entries, setEntries] = useState<Entry[]>([]);
@@ -26,18 +19,19 @@ function Budget() {
         if (storedToken && budgetId) {
             getEntries(storedToken);
         }
-    }, []);
-
-    const entriesList = entries.map(entry =>
-        <div key={entry._id}>
-            {`${entry.category}| ${entry.date} | ${entry.amount} | ${entry.account} | ${entry.description}`}
-        </div>)
+    }, [budgetId]);
 
     return (
-        <>
-            <div>These are the entries for the budget</div>
-            {entriesList}
-        </>
+        <div className="budget-container">
+            <div className="budget-table">
+                <div className="budget-table__controls">
+                    Budget Controls go here
+                </div>
+                <TableHeaders />
+                <TableRows entries={entries} />
+            </div>
+        <Link to={"/home"}>Back Home!</Link>
+        </div>
     );
 }
 
