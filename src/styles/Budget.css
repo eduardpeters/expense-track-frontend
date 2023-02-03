@@ -1,0 +1,26 @@
+.budget-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.budget-controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 10vw;
+}
+
+.budget-table {
+    width: 60vw;
+    margin: 0.5rem;
+}
+
+.budget-overview {
+    width: 30vw;
+}

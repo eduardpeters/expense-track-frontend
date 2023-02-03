@@ -4,6 +4,7 @@
     flex-wrap: nowrap;
     justify-content: space-evenly;
     font-weight: bold;
+    width: 100%;
 }
 
 .table__rows {
@@ -12,6 +13,7 @@
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+    width: 100%;
 }
 
 .table__entry {
@@ -19,6 +21,7 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
+    width: 100%;
 }
 
 .table__cell {

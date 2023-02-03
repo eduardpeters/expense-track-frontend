@@ -21,7 +21,13 @@ function BudgetsList() {
     const budgetLinks = budgets.map((budget: Budget) => {
         return (
             <div className="link-container" key={budget._id}>
-                <Link to={`/budget/${budget._id}`} className="budget-link">{budget.title}</Link>
+                <Link
+                    to={`/budget/${budget._id}`}
+                    className="budget-link"
+                    state={{ budget }}
+                >
+                    {budget.title}
+                </Link>
             </div>
         );
     });
