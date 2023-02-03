@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import budgetsAPI from "../services/budgetsAPI";
 import { Budget } from "../types/AppTypes";
+import "../styles/BudgetsList.css";
 
 function BudgetsList() {
     const [budgets, setBudgets] = useState([]);
@@ -19,7 +20,7 @@ function BudgetsList() {
 
     const budgetLinks = budgets.map((budget: Budget) => {
         return (
-            <div className="budget-link-container" key={budget._id}>
+            <div className="link-container" key={budget._id}>
                 <Link to={`/budget/${budget._id}`} className="budget-link">{budget.title}</Link>
             </div>
         );
@@ -27,8 +28,11 @@ function BudgetsList() {
 
     return (
         <>
-            <div>This is a list of your budgets</div>
-            {budgets.length ? budgetLinks : <p>You have no budgets yet</p>}
+            <div>Available budgets:</div>
+            <div className="budget-links-container">
+                {budgets.length ? budgetLinks : <p>You have no budgets yet</p>}
+                <button>Add new budget</button>
+            </div>
         </>
     );
 }

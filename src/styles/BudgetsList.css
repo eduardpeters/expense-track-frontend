@@ -1,0 +1,15 @@
+.budget-links-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-container {
+    margin: 1rem;
+}
+
+.budget-link {
+    text-decoration: none;
+}
